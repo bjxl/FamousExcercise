@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var Surface = require('famous/core/Surface');
     var Transform = require('famous/core/Transform');
     var ImageSurface = require('famous/surfaces/ImageSurface');
+    var Scrollview = require('famous/views/Scrollview')
 
     // create the main context
     var mainContext = Engine.createContext();
@@ -45,24 +46,39 @@ define(function(require, exports, module) {
     }
 
     function addContent() {
-        layout.content.add(new ImageSurface({
-            size: [400, 400],
-            content: "http://confrazzled.com/wp-content/uploads/2014/08/cat2.jpg",
-            properties: {
-                lineHeight: '400px',
-                textAlign: "center"
-            }
-        }));
+        var scrollview = new Scrollview();
 
-        /*layout.content.add(new ImageSurface({
-            size: [400, 400],
-            content: "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
-            properties: {
-                lineHeight: '400px',
-                textAlign: "center"
-            }
-        }));
-        */
+        var views = [];
+        scrollview.sequenceFrom(views);
+
+        // array of images
+        var images = [];
+        images[2] = 'http://confrazzled.com/wp-content/uploads/2014/08/cat2.jpg';
+        images[1] = 'http://exmoorpet.com/wp-content/uploads/2012/08/cat.png';
+        images[0] = 'http://www.funypet.com/wp-content/uploads/2014/08/alaskan-malamute-graphics-and-comments-w93plbvn.jpg';
+
+        for (var i = 0; i < images.length; i++) {
+            var view = new View();
+
+            var centerModifier = new Modifier({
+                origin: [0.5, 0.5]
+            });
+
+            var surface = new ImageSurface({
+                size: [400, 400],
+                content: images[i],
+                properties: {
+                    lineHeight: '400px'
+                }
+            });
+
+            view.add(centerModifier).add(surface);
+
+            views.push(view);
+        }
+
+        layout.content.add(scrollview);
+
     }
 
     function addFooter() {
@@ -73,14 +89,16 @@ define(function(require, exports, module) {
         var views = [];
         grid.sequenceFrom(views);
 
-        var images =[];
-        images[0] = 'http://irishnewsreview.files.wordpress.com/2014/08/home.png';
-        images[1] = 'https://cdn2.iconfinder.com/data/icons/flaticons-solid/18/explore-1-512.png';
-        images[2] = 'http://cdns2.freepik.com/free-photo/vintage--squared-camera_318-10040.jpg';
-        images[3] = 'http://us.cdn3.123rf.com/168nwm/kanate/kanate1401/kanate140100048/25238361-heart-symbol-speech-bubble-illustration.jpg';
-        images[4] = 'http://icons.iconarchive.com/icons/custom-icon-design/mono-business-2/512/news-icon.png';
+        // array of button icon images
+        var icon =[];
+        icon[0] = 'http://irishnewsreview.files.wordpress.com/2014/08/home.png';
+        icon[1] = 'https://cdn2.iconfinder.com/data/icons/flaticons-solid/18/explore-1-512.png';
+        icon[2] = 'http://cdns2.freepik.com/free-photo/vintage--squared-camera_318-10040.jpg';
+        icon[3] = 'http://us.cdn3.123rf.com/168nwm/kanate/kanate1401/kanate140100048/25238361-heart-symbol-speech-bubble-illustration.jpg';
+        icon[4] = 'http://icons.iconarchive.com/icons/custom-icon-design/mono-business-2/512/news-icon.png';
 
-        for(var i = 0; i < 5; i++) {
+         // create separate views for each icon and center in a grid
+        for(var i = 0; i < icon.length; i++) {
             var view = new View();
 
             var centerModifier = new Modifier({
@@ -88,7 +106,7 @@ define(function(require, exports, module) {
             });
 
             var surface = new ImageSurface({
-                content: images[i],
+                content: icon[i],
                 size: [75, 75],
                 properties: {
                     //color: "black",
@@ -104,7 +122,6 @@ define(function(require, exports, module) {
 
         layout.footer.add(grid);
     };
-
 
 
 

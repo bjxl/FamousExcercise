@@ -1,3 +1,3 @@
 FamousExcercise
 ===============
-Using new Famous coding I learned.
+Use Famo.us to create an instagram-like webpage.
