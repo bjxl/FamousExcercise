@@ -68,6 +68,7 @@ define(function(require, exports, module) {
                 size: [400, 400],
                 content: images[i],
                 properties: {
+                    backgroundColor: '#FAFAFA',
                     lineHeight: '400px'
                 }
             });
@@ -75,9 +76,18 @@ define(function(require, exports, module) {
             view.add(centerModifier).add(surface);
 
             views.push(view);
+
+            // input to enable scrollview
+            surface.pipe(scrollview);
         }
 
         layout.content.add(scrollview);
+
+
+        // enable scrollview
+        scrollview._eventInput.on('touchup', function() {
+            scrollview.setVelocity(1);
+        })
 
     }
 
