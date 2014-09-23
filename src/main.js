@@ -40,7 +40,8 @@ define(function(require, exports, module) {
                 fontSize: '50px',
                 color: '#F2F2F2',
                 lineHeight: '100px',
-                textAlign: 'left'
+                textAlign: 'left',
+                zIndex: 2
             }
         }));
     }
@@ -53,9 +54,11 @@ define(function(require, exports, module) {
 
         // array of images
         var images = [];
-        images[2] = 'http://confrazzled.com/wp-content/uploads/2014/08/cat2.jpg';
-        images[1] = 'http://exmoorpet.com/wp-content/uploads/2012/08/cat.png';
+        images[2] = 'http://cdn-www.dailypuppy.com/dog-images/maverick-the-german-shepherd_68335_2012-10-18_w450.jpg';
+        images[1] = 'https://secure.static.tumblr.com/22eb3e6af01847fbf1951a196a29b117/ye3qfnu/Zpin4754u/tumblr_static_samoyed3.jpg';
         images[0] = 'http://www.funypet.com/wp-content/uploads/2014/08/alaskan-malamute-graphics-and-comments-w93plbvn.jpg';
+        images[3] = 'http://4.bp.blogspot.com/-p5SBRO2C24E/UlJXks7IgWI/AAAAAAAACSI/B-ol8V9kCQU/s1600/pomsky+puppies.jpg';
+        images[4] = 'http://reallycutestuff.com/pics/167-o.jpg';
 
         for (var i = 0; i < images.length; i++) {
             var view = new View();
@@ -119,7 +122,7 @@ define(function(require, exports, module) {
                 content: icon[i],
                 size: [75, 75],
                 properties: {
-                    //color: "black",
+                    backgroundColor: '#585858',
                     lineHeight: '50px',
                     textAlign: 'center'
                 }
